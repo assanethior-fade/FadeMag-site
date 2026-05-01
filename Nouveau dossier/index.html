@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NuclearWeb Africa — Portfolio Digital Nucléaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --atom: #00FFB2;
+  --fire: #FF6B1A;
+  --gold: #F5C518;
+  --deep: #070B12;
+  --panel: #0C1220;
+  --card: #101828;
+  --border: rgba(0,255,178,0.12);
+  --border2: rgba(255,107,26,0.15);
+  --text: #C8D8E8;
+  --dim: #526070;
+  --white: #EEF4FA;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--deep);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9999; opacity:.5;
+}
+.orb { position:fixed; border-radius:50%; filter:blur(140px); pointer-events:none; z-index:0; }
+.orb-1 { width:600px; height:600px; background:rgba(0,255,178,0.05); top:-150px; right:-150px; animation:pulse 10s ease-in-out infinite; }
+.orb-2 { width:500px; height:500px; background:rgba(255,107,26,0.04); bottom:0; left:-150px; animation:pulse 10s 4s ease-in-out infinite; }
+.orb-3 { width:300px; height:300px; background:rgba(245,197,24,0.03); top:50%; left:40%; animation:pulse 12s 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.15);opacity:1} }
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.4rem 5rem;
+  border-bottom:1px solid var(--border);
+  background:rgba(7,11,18,0.9);
+  backdrop-filter:blur(24px);
+}
+.logo { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:4px; color:var(--atom); }
+.logo span { color:var(--fire); }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color .3s; }
+.nav-links a:hover, .nav-links a.active { color:var(--atom); }
+.nav-pill {
+  font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:2px;
+  padding:.55rem 1.4rem; background:transparent;
+  border:1px solid var(--atom); color:var(--atom); text-decoration:none; text-transform:uppercase;
+  transition:all .3s;
+}
+.nav-pill:hover { background:var(--atom); color:var(--deep); }
+.page { display:none; min-height:100vh; position:relative; z-index:1; }
+.page.active { display:block; }
+section { padding:6rem 5rem; position:relative; z-index:2; }
+.max-w { max-width:1400px; margin:0 auto; }
+.section-tag { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:4px; text-transform:uppercase; color:var(--atom); margin-bottom:.8rem; }
+.section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4.5rem); letter-spacing:2px; line-height:.95; margin-bottom:.8rem; }
+.section-sub { color:var(--dim); font-size:.95rem; line-height:1.85; max-width:580px; margin-bottom:3.5rem; }
+#hero { min-height:100vh; display:flex; align-items:center; padding:8rem 5rem 5rem; }
+.hero-wrap { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1400px; margin:0 auto; width:100%; }
+.badge {
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:3px; text-transform:uppercase;
+  color:var(--atom); border:1px solid var(--border); padding:.45rem 1rem; margin-bottom:2rem;
+  animation:fadeUp .8s ease both;
+}
+.dot { width:6px; height:6px; background:var(--atom); border-radius:50%; animation:blink 1.5s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.15} }
+h1.hero-h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(4rem,8vw,7.5rem); line-height:.88; letter-spacing:2px; margin-bottom:1.5rem; animation:fadeUp .8s .2s ease both; }
+h1.hero-h1 .ca { color:var(--atom); }
+h1.hero-h1 .cf { color:var(--fire); }
+.hero-p { font-size:1rem; line-height:1.85; color:var(--dim); max-width:460px; margin-bottom:2.5rem; animation:fadeUp .8s .4s ease both; }
+.hero-btns { display:flex; gap:1rem; animation:fadeUp .8s .6s ease both; }
+.btn-a, .btn-b { font-family:'Space Mono',monospace; font-size:.7rem; letter-spacing:2px; text-transform:uppercase; padding:.9rem 2rem; text-decoration:none; transition:all .3s; cursor:pointer; border:none; }
+.btn-a { background:var(--atom); color:var(--deep); font-weight:700; }
+.btn-a:hover { background:#00e0a0; transform:translateY(-2px); }
+.btn-b { border:1px solid var(--border); color:var(--text); background:transparent; }
+.btn-b:hover { border-color:var(--atom); color:var(--atom); }
+.hero-stats { display:flex; gap:2.5rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); animation:fadeUp .8s .8s ease both; }
+.stat-num { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--atom); line-height:1; }
+.stat-lbl { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:2px; text-transform:uppercase; color:var(--dim); margin-top:.3rem; }
+.atom-vis { display:flex; justify-content:center; align-items:center; animation:fadeUp .8s .3s ease both; }
+.atom-wrap { position:relative; width:400px; height:400px; }
+.nucleus {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:64px; height:64px; border-radius:50%;
+  background:radial-gradient(circle at 40% 40%, var(--fire), #8B2500);
+  box-shadow:0 0 50px rgba(255,107,26,.7), 0 0 100px rgba(255,107,26,.3);
+  z-index:10;
+}
+.orbit { position:absolute; top:50%; left:50%; border-radius:50%; border:1px solid rgba(0,255,178,.18); transform-origin:center; }
+.o1 { width:160px; height:160px; margin:-80px; animation:spin 4s linear infinite; }
+.o2 { width:250px; height:250px; margin:-125px; transform:rotate(60deg); animation:spin2 7s linear infinite; }
+.o3 { width:360px; height:360px; margin:-180px; transform:rotate(120deg); animation:spin3 11s linear infinite; }
+@keyframes spin  { to { transform: rotate(360deg); } }
+@keyframes spin2 { from { transform:rotate(60deg); } to { transform:rotate(420deg); } }
+@keyframes spin3 { from { transform:rotate(120deg); } to { transform:rotate(480deg); } }
+.electron { position:absolute; width:12px; height:12px; background:var(--atom); border-radius:50%; top:-6px; left:50%; margin-left:-6px; box-shadow:0 0 12px var(--atom), 0 0 24px rgba(0,255,178,.4); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+#services { background:var(--panel); }
+.srv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
+.srv { background:var(--panel); padding:2.5rem; position:relative; overflow:hidden; transition:background .3s, transform .3s; }
+.srv::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--atom),transparent); transform:translateX(-100%); transition:transform .6s; }
+.srv:hover::before { transform:translateX(0); }
+.srv:hover { background:var(--card); transform:translateY(-3px); }
+.srv-ico { font-size:2rem; margin-bottom:1.5rem; }
+.srv h3 { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:2px; margin-bottom:.7rem; }
+.srv p { font-size:.88rem; color:var(--dim); line-height:1.7; margin-bottom:1.5rem; }
+.tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+.tag { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:1px; padding:.25rem .55rem; border:1px solid var(--border); color:var(--atom); text-transform:uppercase; }
+#projets { background:var(--deep); }
+.proj-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2rem; }
+.proj { border:1px solid var(--border); overflow:hidden; transition:border-color .3s; }
+.proj:hover { border-color:var(--atom); }
+.proj-img { height:200px; display:flex; align-items:center; justify-content:center; font-size:5rem; position:relative; overflow:hidden; }
+.pi1 { background:linear-gradient(135deg,#070f1a,#091a0f); }
+.pi2 { background:linear-gradient(135deg,#150a05,#1a1005); }
+.pi3 { background:linear-gradient(135deg,#07091a,#071a1a); }
+.pi4 { background:linear-gradient(135deg,#1a0710,#070d1a); }
+.pi5 { background:linear-gradient(135deg,#0a1507,#07120a); }
+.proj-img .ico { opacity:.25; }
+.overlay { position:absolute; inset:0; background:rgba(0,255,178,.05); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; }
+.proj:hover .overlay { opacity:1; }
+.vbtn { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:2px; padding:.65rem 1.4rem; border:1px solid var(--atom); color:var(--atom); background:transparent; cursor:pointer; text-transform:uppercase; transition:all .3s; }
+.vbtn:hover { background:var(--atom); color:var(--deep); }
+.proj-body { padding:1.5rem 2rem 2rem; }
+.proj-type { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--fire); margin-bottom:.4rem; }
+.proj-body h3 { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; margin-bottom:.5rem; }
+.proj-body p { font-size:.87rem; color:var(--dim); line-height:1.65; margin-bottom:1rem; }
+.stack { display:flex; flex-wrap:wrap; gap:.4rem; }
+.sb { font-family:'Space Mono',monospace; font-size:.55rem; padding:.22rem .55rem; background:rgba(0,255,178,.07); border:1px solid var(--border); color:var(--atom); letter-spacing:1px; }
+#senegal-page { background:var(--deep); }
+.sn-hero { min-height:60vh; display:flex; align-items:center; padding:9rem 5rem 4rem; background:linear-gradient(160deg,var(--deep) 60%,rgba(0,90,45,.08)); border-bottom:1px solid var(--border); }
+.sn-flag { font-size:3.5rem; margin-bottom:1.5rem; }
+.sn-tag { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:.8rem; display:flex; align-items:center; gap:.6rem; }
+.dot-gold { width:6px; height:6px; background:var(--gold); border-radius:50%; animation:blink 2s ease-in-out infinite; }
+.sn-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,7vw,6.5rem); line-height:.9; letter-spacing:2px; margin-bottom:1.5rem; }
+.sn-title .sg { color:#00D85A; }
+.sn-title .ac { color:var(--atom); }
+.sn-intro { font-size:.98rem; color:var(--dim); line-height:1.85; max-width:640px; margin-bottom:2rem; }
+.sn-meta { display:flex; flex-wrap:wrap; gap:1rem; }
+.sn-meta-item { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:2px; text-transform:uppercase; padding:.45rem 1rem; border:1px solid var(--border); color:var(--dim); }
+.sn-meta-item span { color:var(--atom); }
+.timeline-wrap { background:var(--panel); padding:5rem; border-bottom:1px solid var(--border); }
+.timeline { position:relative; padding-left:2.5rem; max-width:900px; }
+.timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,var(--atom),rgba(0,255,178,.1)); }
+.tl-item { position:relative; margin-bottom:3rem; }
+.tl-dot { position:absolute; left:-2.5rem; top:.3rem; width:12px; height:12px; background:var(--panel); border:2px solid var(--atom); border-radius:50%; transform:translateX(calc(-50% + .5px + 1.25rem)); }
+.tl-dot.done { background:var(--atom); }
+.tl-dot.current { background:var(--gold); border-color:var(--gold); box-shadow:0 0 12px var(--gold); }
+.tl-date { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--dim); margin-bottom:.4rem; }
+.tl-title { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:2px; color:var(--text); margin-bottom:.4rem; }
+.tl-desc { font-size:.88rem; color:var(--dim); line-height:1.7; }
+.tl-status { display:inline-block; font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:2px; text-transform:uppercase; padding:.2rem .6rem; margin-top:.5rem; }
+.st-done { background:rgba(0,255,178,.1); color:var(--atom); border:1px solid rgba(0,255,178,.2); }
+.st-current { background:rgba(245,197,24,.1); color:var(--gold); border:1px solid rgba(245,197,24,.2); }
+.st-next { background:rgba(255,107,26,.1); color:var(--fire); border:1px solid rgba(255,107,26,.2); }
+.manq-wrap { padding:5rem; background:var(--deep); border-bottom:1px solid var(--border); }
+.manq-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-bottom:3rem; }
+.manq-card { border:1px solid var(--border2); padding:2rem; position:relative; overflow:hidden; transition:border-color .3s; }
+.manq-card:hover { border-color:var(--fire); }
+.manq-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--fire),transparent); transform:translateX(-100%); transition:transform .6s; }
+.manq-card:hover::before { transform:translateX(0); }
+.manq-num { font-family:'Bebas Neue',sans-serif; font-size:3rem; color:rgba(255,107,26,.15); line-height:1; position:absolute; top:.5rem; right:1rem; }
+.manq-cat { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:3px; text-transform:uppercase; color:var(--fire); margin-bottom:.5rem; }
+.manq-card h4 { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:2px; margin-bottom:.6rem; }
+.manq-card p { font-size:.85rem; color:var(--dim); line-height:1.7; }
+.solutions-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.sol { border:1px solid var(--border); padding:2rem; position:relative; overflow:hidden; transition:all .3s; }
+.sol:hover { border-color:var(--atom); background:var(--card); }
+.sol-ico { font-size:2rem; margin-bottom:1rem; }
+.sol-tag { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:2px; text-transform:uppercase; color:var(--atom); margin-bottom:.4rem; }
+.sol h4 { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:2px; margin-bottom:.5rem; }
+.sol p { font-size:.85rem; color:var(--dim); line-height:1.7; margin-bottom:1rem; }
+.sol-benefit { font-family:'Space Mono',monospace; font-size:.58rem; letter-spacing:1px; padding:.3rem .7rem; border:1px solid rgba(0,255,178,.15); color:var(--atom); display:inline-block; margin-top:.3rem; }
+.opp-wrap { padding:5rem; background:var(--panel); }
+.opp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+.opp-card { padding:2rem; border:1px solid var(--border); position:relative; }
+.opp-index { font-family:'Bebas Neue',sans-serif; font-size:4rem; color:rgba(0,255,178,.07); line-height:1; position:absolute; top:.5rem; right:1rem; }
+.opp-label { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem; }
+.opp-card h4 { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:2px; margin-bottom:.6rem; color:var(--white); }
+.opp-card p { font-size:.85rem; color:var(--dim); line-height:1.7; margin-bottom:1rem; }
+.opp-val { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:2px; text-transform:uppercase; color:var(--atom); padding:.3rem .7rem; border-left:2px solid var(--atom); }
+#pays { background:var(--panel); }
+.cty-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; }
+.cty { border:1px solid var(--border); padding:1.5rem 1rem; text-align:center; position:relative; overflow:hidden; transition:all .3s; cursor:pointer; }
+.cty::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,255,178,.05),transparent); opacity:0; transition:opacity .3s; }
+.cty:hover { border-color:var(--atom); }
+.cty:hover::before { opacity:1; }
+.cty.featured { border-color:var(--gold); }
+.cty.featured::after { content:'ACTIF'; font-family:'Space Mono',monospace; font-size:.45rem; letter-spacing:2px; position:absolute; top:6px; right:6px; padding:.15rem .4rem; background:rgba(245,197,24,.15); color:var(--gold); border:1px solid rgba(245,197,24,.3); }
+.cty-flag { font-size:2.2rem; margin-bottom:.7rem; }
+.cty-name { font-family:'Bebas Neue',sans-serif; font-size:1.05rem; letter-spacing:2px; margin-bottom:.3rem; }
+.cty-status { font-family:'Space Mono',monospace; font-size:.5rem; letter-spacing:1px; text-transform:uppercase; }
+.s-active { color:var(--atom); }
+.s-dev { color:var(--fire); }
+.s-plan { color:var(--dim); }
+.s-new { color:var(--gold); }
+#contact { background:var(--deep); }
+.contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:6rem; align-items:start; }
+.c-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,5vw,5rem); line-height:.9; letter-spacing:2px; margin-bottom:1.5rem; }
+.c-p { color:var(--dim); line-height:1.8; margin-bottom:2rem; }
+.c-item { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1rem; padding:1rem 1.2rem; border:1px solid var(--border); transition:border-color .3s; }
+.c-item:hover { border-color:var(--atom); }
+.c-ico { font-size:1.1rem; width:36px; text-align:center; }
+.c-lbl { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:2px; text-transform:uppercase; color:var(--dim); }
+.c-val { font-size:.92rem; color:var(--text); margin-top:.2rem; }
+.form { display:flex; flex-direction:column; gap:1rem; }
+.fg { display:flex; flex-direction:column; gap:.35rem; }
+.flbl { font-family:'Space Mono',monospace; font-size:.58rem; letter-spacing:2px; text-transform:uppercase; color:var(--dim); }
+.fi,.fs,.ft { background:var(--panel); border:1px solid var(--border); color:var(--text); padding:.85rem 1rem; font-family:'Syne',sans-serif; font-size:.9rem; outline:none; transition:border-color .3s; width:100%; }
+.fi:focus,.fs:focus,.ft:focus { border-color:var(--atom); }
+.fs option { background:var(--panel); }
+.ft { resize:vertical; min-height:110px; }
+.fr2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.btn-send { font-family:'Space Mono',monospace; font-size:.7rem; letter-spacing:2px; text-transform:uppercase; padding:1rem 2rem; background:var(--atom); color:var(--deep); border:none; font-weight:700; cursor:pointer; transition:all .3s; width:100%; margin-top:.5rem; }
+.btn-send:hover { background:#00e0a0; transform:translateY(-2px); }
+footer { border-top:1px solid var(--border); padding:2rem 5rem; display:flex; justify-content:space-between; align-items:center; position:relative; z-index:2; }
+.f-logo { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:4px; color:var(--atom); }
+.f-copy { font-family:'Space Mono',monospace; font-size:.55rem; letter-spacing:2px; color:var(--dim); text-transform:uppercase; }
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--deep); }
+::-webkit-scrollbar-thumb { background:var(--atom); }
+@media(max-width:900px) {
+  nav { padding:1.2rem 1.5rem; }
+  .nav-links { display:none; }
+  section, .timeline-wrap, .manq-wrap, .opp-wrap, .sn-hero { padding:4rem 1.5rem; }
+  .hero-wrap { grid-template-columns:1fr; }
+  .atom-vis { display:none; }
+  .srv-grid, .solutions-grid, .opp-grid { grid-template-columns:1fr; }
+  .proj-grid { grid-template-columns:1fr; }
+  .manq-grid { grid-template-columns:1fr; }
+  .cty-grid { grid-template-columns:repeat(3,1fr); }
+  .contact-grid { grid-template-columns:1fr; gap:3rem; }
+  footer { flex-direction:column; gap:1rem; text-align:center; padding:2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav>
+  <div class="logo">Nuclear<span>Web</span> Africa</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home'); return false;" class="active" id="nav-home">Accueil</a></li>
+    <li><a href="#" onclick="showPage('home'); scrollTo('services'); return false;">Services</a></li>
+    <li><a href="#" onclick="showPage('home'); scrollTo('projets'); return false;">Projets</a></li>
+    <li><a href="#" onclick="showPage('senegal'); return false;" id="nav-senegal" style="color:var(--gold)">🇸🇳 Cas Sénégal</a></li>
+    <li><a href="#" onclick="showPage('home'); scrollTo('pays'); return false;">Marchés</a></li>
+  </ul>
+  <a href="#contact" class="nav-pill" onclick="showPage('home'); setTimeout(()=>scrollTo('contact'),100); return false;">Démarrer un projet</a>
+</nav>
+
+<!-- PAGE ACCUEIL -->
+<div id="page-home" class="page active">
+
+<section id="hero">
+  <div class="hero-wrap">
+    <div>
+      <div class="badge"><div class="dot"></div> Spécialiste Digital · Nucléaire Africain</div>
+      <h1 class="hero-h1">Solutions<br><span class="ca">Digitales</span><br>Pour l'<span class="cf">Énergie</span><br>de Demain</h1>
+      <p class="hero-p">Sites web, applications et plateformes sur mesure pour les acteurs du nucléaire en Afrique — régulateurs, opérateurs, sous-traitants et institutions.</p>
+      <div class="hero-btns">
+        <button class="btn-a" onclick="showPage('home'); setTimeout(()=>scrollTo('projets'),100)">Voir les projets</button>
+        <button class="btn-b" onclick="showPage('senegal')">🇸🇳 Cas Sénégal</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">17</div><div class="stat-lbl">Pays ciblés</div></div>
+        <div><div class="stat-num">6</div><div class="stat-lbl">Secteurs</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-lbl">Spécialisé</div></div>
+      </div>
+    </div>
+    <div class="atom-vis">
+      <div class="atom-wrap">
+        <div class="nucleus"></div>
+        <div class="orbit o1"><div class="electron"></div></div>
+        <div class="orbit o2"><div class="electron"></div></div>
+        <div class="orbit o3"><div class="electron"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="max-w">
+    <div class="section-tag">// Ce que nous faisons</div>
+    <h2 class="section-title">Nos Services</h2>
+    <p class="section-sub">Des solutions numériques pensées pour les besoins spécifiques du secteur nucléaire en Afrique.</p>
+    <div class="srv-grid">
+      <div class="srv"><div class="srv-ico">🏛️</div><h3>Sites Institutionnels</h3><p>Portails officiels pour agences de régulation, autorités de sûreté et ministères. Conformité AIEA, accessibilité multilingue.</p><div class="tags"><span class="tag">Régulation</span><span class="tag">AIEA</span><span class="tag">Multilingue</span></div></div>
+      <div class="srv"><div class="srv-ico">🎓</div><h3>Plateformes E-Learning</h3><p>Formation en ligne pour ingénieurs, techniciens et agents de sûreté. Modules certifiants, quiz et suivi de progression.</p><div class="tags"><span class="tag">LMS</span><span class="tag">Certification</span><span class="tag">Mobile</span></div></div>
+      <div class="srv"><div class="srv-ico">📊</div><h3>Dashboards Temps Réel</h3><p>Tableaux de bord pour la gestion de chantiers, le monitoring environnemental et le reporting aux investisseurs.</p><div class="tags"><span class="tag">Analytics</span><span class="tag">IoT</span><span class="tag">Reporting</span></div></div>
+      <div class="srv"><div class="srv-ico">📱</div><h3>Applications Mobiles</h3><p>Apps de surveillance radiologique, inspections terrain et alertes d'urgence pour les équipes opérationnelles.</p><div class="tags"><span class="tag">iOS/Android</span><span class="tag">Offline</span><span class="tag">Alertes</span></div></div>
+      <div class="srv"><div class="srv-ico">🌐</div><h3>Portails d'Information</h3><p>Sites d'actualité, blogs spécialisés et newsletters pour informer citoyens, journalistes et décideurs.</p><div class="tags"><span class="tag">CMS</span><span class="tag">Newsletter</span><span class="tag">SEO</span></div></div>
+      <div class="srv"><div class="srv-ico">🔒</div><h3>Gestion Documentaire</h3><p>Systèmes sécurisés pour gérer les documents réglementaires, certifications et procédures techniques critiques.</p><div class="tags"><span class="tag">Sécurité</span><span class="tag">Conformité</span><span class="tag">DMS</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="max-w">
+    <div class="section-tag">// Réalisations</div>
+    <h2 class="section-title">Projets de Référence</h2>
+    <p class="section-sub">Démonstrations concrètes de notre expertise dans l'univers nucléaire africain.</p>
+    <div class="proj-grid">
+      <div class="proj"><div class="proj-img pi1"><span class="ico">⚛️</span><div class="overlay"><button class="vbtn">Voir le projet</button></div></div><div class="proj-body"><div class="proj-type">Agence Gouvernementale</div><h3>Portail GAEC Ghana</h3><p>Site institutionnel multilingue pour la Ghana Atomic Energy Commission avec section réglementaire et publications scientifiques.</p><div class="stack"><span class="sb">React</span><span class="sb">Next.js</span><span class="sb">Headless CMS</span><span class="sb">EN/FR</span></div></div></div>
+      <div class="proj"><div class="proj-img pi2"><span class="ico">🎓</span><div class="overlay"><button class="vbtn">Voir le projet</button></div></div><div class="proj-body"><div class="proj-type">Formation Nucléaire</div><h3>NuclEd Africa LMS</h3><p>Plateforme e-learning dédiée à la formation des techniciens en radioprotection pour 5 pays d'Afrique de l'Ouest.</p><div class="stack"><span class="sb">Moodle</span><span class="sb">Vue.js</span><span class="sb">Certificats PDF</span><span class="sb">Mobile</span></div></div></div>
+      <div class="proj"><div class="proj-img pi3"><span class="ico">📡</span><div class="overlay"><button class="vbtn">Voir le projet</button></div></div><div class="proj-body"><div class="proj-type">Monitoring Environnemental</div><h3>RadiMap — Maroc</h3><p>Application de cartographie temps réel des mesures de radioactivité ambiante. Interface publique et back-office pour le CNESTEN.</p><div class="stack"><span class="sb">Leaflet.js</span><span class="sb">Node.js</span><span class="sb">IoT</span><span class="sb">API REST</span></div></div></div>
+      <div class="proj"><div class="proj-img pi4"><span class="ico">🏗️</span><div class="overlay"><button class="vbtn">Voir le projet</button></div></div><div class="proj-body"><div class="proj-type">Gestion de Chantier</div><h3>NucleBuild — El Dabaa</h3><p>Tableau de bord de suivi du chantier de la centrale d'El Dabaa (Égypte). Reporting Rosatom et KPIs temps réel.</p><div class="stack"><span class="sb">React</span><span class="sb">PostgreSQL</span><span class="sb">Chart.js</span><span class="sb">Auth sécurisée</span></div></div></div>
+      <div class="proj" style="grid-column:1/-1; background:rgba(245,197,24,.03); border-color:rgba(245,197,24,.2);">
+        <div style="display:grid;grid-template-columns:200px 1fr;gap:0">
+          <div class="proj-img pi5" style="height:100%;min-height:180px"><span class="ico">🇸🇳</span><div class="overlay"><button class="vbtn" onclick="showPage('senegal')">Voir le dossier</button></div></div>
+          <div class="proj-body" style="border-left:1px solid rgba(245,197,24,.15)">
+            <div class="proj-type" style="color:var(--gold)">Dossier Prioritaire · 2025-2026</div>
+            <h3>Écosystème Digital — Sénégal Nucléaire</h3>
+            <p>Suite complète pour accompagner le projet nucléaire sénégalais : ITNA, ARSN, LMS, app citoyenne et dashboard SMR. <strong style="color:var(--gold)">Analyse des manquements & opportunités disponible.</strong></p>
+            <div class="stack"><span class="sb">React</span><span class="sb">Node.js</span><span class="sb">LMS</span><span class="sb">Mobile</span><span class="sb">GovTech</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pays">
+  <div class="max-w">
+    <div class="section-tag">// Marchés actifs</div>
+    <h2 class="section-title">Pays Prioritaires</h2>
+    <p class="section-sub">Marchés africains avec des projets nucléaires actifs ou en développement avancé.</p>
+    <div class="cty-grid">
+      <div class="cty"><div class="cty-flag">🇪🇬</div><div class="cty-name">Égypte</div><div class="cty-status s-active">● En construction</div></div>
+      <div class="cty"><div class="cty-flag">🇿🇦</div><div class="cty-name">Afrique du Sud</div><div class="cty-status s-active">● Opérationnel</div></div>
+      <div class="cty"><div class="cty-flag">🇲🇦</div><div class="cty-name">Maroc</div><div class="cty-status s-dev">● En développement</div></div>
+      <div class="cty"><div class="cty-flag">🇬🇭</div><div class="cty-name">Ghana</div><div class="cty-status s-dev">● En développement</div></div>
+      <div class="cty"><div class="cty-flag">🇳🇬</div><div class="cty-name">Nigeria</div><div class="cty-status s-dev">● En développement</div></div>
+      <div class="cty featured" onclick="showPage('senegal')"><div class="cty-flag">🇸🇳</div><div class="cty-name">Sénégal</div><div class="cty-status s-new">⚡ Nouveau marché</div></div>
+      <div class="cty"><div class="cty-flag">🇧🇫</div><div class="cty-name">Burkina Faso</div><div class="cty-status s-dev">● Accord Rosatom</div></div>
+      <div class="cty"><div class="cty-flag">🇩🇿</div><div class="cty-name">Algérie</div><div class="cty-status s-dev">● En développement</div></div>
+      <div class="cty"><div class="cty-flag">🇰🇪</div><div class="cty-name">Kenya</div><div class="cty-status s-plan">○ Planifié</div></div>
+      <div class="cty"><div class="cty-flag">🇹🇳</div><div class="cty-name">Tunisie</div><div class="cty-status s-plan">○ Planifié</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-grid">
+      <div>
+        <div class="section-tag">// Parlons de votre projet</div>
+        <h2 class="c-title">Démarrons<br><span style="color:var(--atom)">Ensemble</span></h2>
+        <p class="c-p">Agence, opérateur, sous-traitant ou institution dans le nucléaire africain ? Décrivez votre besoin digital.</p>
+        <div class="c-item"><div class="c-ico">✉️</div><div><div class="c-lbl">Email</div><div class="c-val">contact@nuclearweb-africa.com</div></div></div>
+        <div class="c-item"><div class="c-ico">🌍</div><div><div class="c-lbl">Zones couvertes</div><div class="c-val">Afrique francophone & anglophone</div></div></div>
+        <div class="c-item"><div class="c-ico">⚡</div><div><div class="c-lbl">Réponse</div><div class="c-val">Sous 24h ouvrées</div></div></div>
+      </div>
+      <div class="form">
+        <div class="fr2">
+          <div class="fg"><label class="flbl">Prénom</label><input type="text" class="fi" placeholder="Moussa"></div>
+          <div class="fg"><label class="flbl">Nom</label><input type="text" class="fi" placeholder="Diallo"></div>
+        </div>
+        <div class="fg"><label class="flbl">Organisation</label><input type="text" class="fi" placeholder="ARSN / ITNA / Ministère..."></div>
+        <div class="fg"><label class="flbl">Pays</label>
+          <select class="fs"><option>Sélectionner...</option><option>Sénégal</option><option>Égypte</option><option>Ghana</option><option>Maroc</option><option>Nigeria</option><option>Afrique du Sud</option><option>Burkina Faso</option><option>Algérie</option><option>Autre</option></select>
+        </div>
+        <div class="fg"><label class="flbl">Type de projet</label>
+          <select class="fs"><option>Quel type de projet ?</option><option>Site institutionnel</option><option>Plateforme e-learning</option><option>Application mobile</option><option>Dashboard / Analytics</option><option>Portail d'information</option><option>Gestion documentaire</option><option>Autre</option></select>
+        </div>
+        <div class="fg"><label class="flbl">Décrivez votre besoin</label><textarea class="ft" placeholder="Décrivez brièvement votre projet..."></textarea></div>
+        <button class="btn-send">→ Envoyer la demande</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-home -->
+
+<!-- PAGE SÉNÉGAL -->
+<div id="page-senegal" class="page">
+
+<div class="sn-hero">
+  <div style="max-width:1400px;margin:0 auto;width:100%">
+    <div class="sn-flag">🇸🇳</div>
+    <div class="sn-tag"><div class="dot-gold"></div> Dossier Stratégique · Avril 2026</div>
+    <h1 class="sn-title">Sénégal<br><span class="sg">Nucléaire</span><br><span class="ac">Opportunités</span><br>Digitales</h1>
+    <p class="sn-intro">En novembre 2025, le ministre Birame Soulèye Diop a présenté en Conseil des ministres la vision nucléaire du Sénégal, visant les petits réacteurs modulaires (SMR). Le pays ambitionne de devenir un <strong>hub nucléaire pour l'Afrique francophone</strong>. Ce dossier analyse les manquements actuels et les solutions digitales concrètes.</p>
+    <div class="sn-meta">
+      <div class="sn-meta-item">Statut : <span>Étude de faisabilité SMR</span></div>
+      <div class="sn-meta-item">Institutions : <span>ITNA · ARSN</span></div>
+      <div class="sn-meta-item">Partenaires : <span>AIEA · USA · France</span></div>
+      <div class="sn-meta-item">Technologie : <span>SMR — Petits Réacteurs Modulaires</span></div>
+    </div>
+    <br>
+    <button class="btn-b" onclick="showPage('home')" style="margin-top:1.5rem">← Retour au portfolio</button>
+  </div>
+</div>
+
+<div class="timeline-wrap">
+  <div style="max-width:1400px;margin:0 auto">
+    <div class="section-tag">// Feuille de route officielle</div>
+    <h2 class="section-title" style="margin-bottom:3rem">État d'Avancement</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot done"></div><div class="tl-date">2014 – 2019</div><div class="tl-title">Plan de Sécurité Nucléaire (INSSP)</div><div class="tl-desc">Collaboration avec l'AIEA pour établir un régime de sécurité nucléaire. Formation des douanes, forces de l'ordre et régulateurs. Ratification de la Convention sur la Protection Physique des Matières Nucléaires.</div><span class="tl-status st-done">✓ Complété</span></div>
+      <div class="tl-item"><div class="tl-dot done"></div><div class="tl-date">2024</div><div class="tl-title">Création de l'ARSN & Stratégie JETP</div><div class="tl-desc">Renforcement de l'Autorité de Radioprotection et Sûreté Nucléaire. Élaboration du plan d'investissement JETP. L'ITNA identifié comme socle de la filière nucléaire nationale.</div><span class="tl-status st-done">✓ Complété</span></div>
+      <div class="tl-item"><div class="tl-dot done"></div><div class="tl-date">Novembre 2025</div><div class="tl-title">Communication Officielle en Conseil des Ministres</div><div class="tl-desc">Le ministre Birame Soulèye Diop officialise la vision nucléaire du Sénégal. Cap sur les SMR et la souveraineté énergétique. Ambition de hub nucléaire pour l'Afrique francophone déclarée à l'UCAD.</div><span class="tl-status st-done">✓ Annoncé</span></div>
+      <div class="tl-item"><div class="tl-dot current"></div><div class="tl-date">2025 – 2026 · EN COURS</div><div class="tl-title">État des Lieux AIEA + Étude de Faisabilité SMR</div><div class="tl-desc">Diagnostic national avec l'AIEA. Étude de faisabilité pour le premier réacteur de recherche. Développement filière SMR. Réacteurs pour la formation et les médicaments radiopharmaceutiques (médecine nucléaire).</div><span class="tl-status st-current">⚡ Phase active — Votre opportunité</span></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2027 – 2030</div><div class="tl-title">Construction du Réacteur de Recherche</div><div class="tl-desc">Implantation du premier réacteur nucléaire dédié à la recherche, la formation et la production de médicaments radiopharmaceutiques.</div><span class="tl-status st-next">→ À venir</span></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2030 +</div><div class="tl-title">Déploiement SMR Énergétique</div><div class="tl-desc">Études pour petites centrales nucléaires commerciales. Mix énergétique visant 40% d'énergies décarbonées d'ici 2030.</div><span class="tl-status st-next">→ Planifié</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="manq-wrap">
+  <div style="max-width:1400px;margin:0 auto">
+    <div class="section-tag">// Analyse des lacunes</div>
+    <h2 class="section-title">Les 6 Manquements Critiques</h2>
+    <p class="section-sub">Ces déficits sont exactement là où vos compétences digitales peuvent créer de la valeur immédiate.</p>
+    <div class="manq-grid">
+      <div class="manq-card"><div class="manq-num">01</div><div class="manq-cat">Institutionnel & Humain</div><h4>Absence de Culture Numérique de la Sûreté</h4><p>Le nucléaire exige une culture de sûreté irréprochable. Le Sénégal n'a pas encore de plateforme centralisée pour diffuser les protocoles, normes AIEA et bonnes pratiques aux acteurs locaux.</p></div>
+      <div class="manq-card"><div class="manq-num">02</div><div class="manq-cat">Formation & Compétences</div><h4>Déficit Critique de Ressources Humaines Qualifiées</h4><p>L'ITNA manque d'une infrastructure digitale de formation : pas de LMS, pas de cours en ligne, pas de certification numérique reconnue pour former les futures générations d'ingénieurs nucléaires.</p></div>
+      <div class="manq-card"><div class="manq-num">03</div><div class="manq-cat">Communication Publique</div><h4>Méfiance Populaire & Manque de Pédagogie</h4><p>Les perceptions négatives, souvent alimentées par la méconnaissance, sont un frein majeur. Aucun portail citoyen d'information scientifique sur le nucléaire n'existe en wolof, français et anglais.</p></div>
+      <div class="manq-card"><div class="manq-num">04</div><div class="manq-cat">Réglementation</div><h4>Cadre Réglementaire Digital Inexistant</h4><p>L'ARSN ne dispose pas d'un portail transparent pour les licences, inspections et publications réglementaires. Les documents de conformité ne sont pas accessibles en ligne.</p></div>
+      <div class="manq-card"><div class="manq-num">05</div><div class="manq-cat">Gestion des Déchets</div><h4>Absence d'Outil de Traçabilité Publique</h4><p>Il n'existe pas de système numérique de traçabilité et de reporting accessible aux parties prenantes et citoyens pour assurer la transparence sur les matières radioactives.</p></div>
+      <div class="manq-card"><div class="manq-num">06</div><div class="manq-cat">Attractivité Internationale</div><h4>Pas de Vitrine Digitale pour les Partenaires</h4><p>Pour attirer des partenaires (USA, France, Russie, Chine), le Sénégal n'a pas de plateforme professionnelle présentant ses capacités, institutions et roadmap nucléaire en anglais et français.</p></div>
+    </div>
+
+    <div class="section-tag" style="margin-top:4rem">// Vos solutions digitales</div>
+    <h2 class="section-title" style="margin-bottom:.8rem">Ce que Vous Pouvez Proposer</h2>
+    <p class="section-sub">Une solution digitale concrète pour chaque manquement identifié.</p>
+    <div class="solutions-grid">
+      <div class="sol"><div class="sol-ico">🏛️</div><div class="sol-tag">→ Résout manquement #4</div><h4>Portail ARSN Modernisé</h4><p>Site institutionnel pour l'Autorité de Radioprotection. Publications réglementaires, licences en ligne, registre des sources radioactives, tableau de bord des inspections.</p><span class="sol-benefit">Client direct : ARSN / Ministère</span></div>
+      <div class="sol"><div class="sol-ico">🎓</div><div class="sol-tag">→ Résout manquement #2</div><h4>ITNA Digital — LMS National</h4><p>Plateforme e-learning officielle de l'ITNA. Cours en ligne, certifications, ressources pédagogiques et suivi des apprenants pour toute l'Afrique francophone.</p><span class="sol-benefit">Client direct : ITNA / UCAD</span></div>
+      <div class="sol"><div class="sol-ico">📢</div><div class="sol-tag">→ Résout manquement #3</div><h4>SénégalNucléaire.sn — Info Citoyenne</h4><p>Portail multilingue (wolof, français, anglais) d'information scientifique grand public. FAQ interactif, cartographie des sites et espace questions-réponses.</p><span class="sol-benefit">Client : Ministère / ONG / AIEA</span></div>
+      <div class="sol"><div class="sol-ico">🌍</div><div class="sol-tag">→ Résout manquement #6</div><h4>Senegal Nuclear Hub — Vitrine Internationale</h4><p>Site bilingue FR/EN du programme nucléaire sénégalais destiné aux partenaires internationaux. Roadmap interactive, profils institutions, appels d'offres.</p><span class="sol-benefit">Client : Primature / Ministère Énergie</span></div>
+      <div class="sol"><div class="sol-ico">📊</div><div class="sol-tag">→ Résout manquements #1 & #5</div><h4>Dashboard Gouvernemental SMR</h4><p>Tableau de bord de pilotage : avancement des études de faisabilité, KPIs, traçabilité des matières radioactives et reporting AIEA automatisé.</p><span class="sol-benefit">Client : Cabinet Présidentiel / Ministère</span></div>
+      <div class="sol"><div class="sol-ico">💊</div><div class="sol-tag">→ Opportunité santé nucléaire</div><h4>App Médecine Nucléaire — Idrissa Pouy</h4><p>L'hôpital Idrissa Pouy de Dakar a déjà un département de médecine nucléaire fonctionnel. Application de gestion des traitements radiopharmaceutiques et suivi patients.</p><span class="sol-benefit">Client : CHU Dakar / Ministère Santé</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="opp-wrap">
+  <div style="max-width:1400px;margin:0 auto">
+    <div class="section-tag">// Stratégie de prospection</div>
+    <h2 class="section-title">Comment Décrocher ces Contrats</h2>
+    <p class="section-sub">Les étapes concrètes pour vous positionner sur le marché numérique nucléaire sénégalais dès maintenant.</p>
+    <div class="opp-grid">
+      <div class="opp-card"><div class="opp-index">1</div><div class="opp-label">Court terme · 0 à 3 mois</div><h4>Démarcher l'ITNA & l'ARSN</h4><p>Contactez directement l'Institut de Technologie Nucléaire Appliquée (UCAD, Dakar) et l'Autorité de Radioprotection. Présentez ce portfolio comme démonstration de votre expertise sectorielle.</p><div class="opp-val">Contacts : Dr Abdourahmane Diouf · ARSN Dakar</div></div>
+      <div class="opp-card"><div class="opp-index">2</div><div class="opp-label">Moyen terme · 3 à 6 mois</div><h4>Cibler les Partenaires Internationaux</h4><p>Rosatom Africa, AIEA, ambassades des USA et de France financent des projets digitaux de renforcement institutionnel en Afrique. Soumettez des propositions via leurs appels à projets.</p><div class="opp-val">Budget type AIEA : 50k – 200k USD par projet</div></div>
+      <div class="opp-card"><div class="opp-index">3</div><div class="opp-label">Long terme · 6 à 18 mois</div><h4>Appels d'Offres Gouvernementaux</h4><p>Avec l'avancement du projet SMR, des appels d'offres pour la transformation digitale des institutions nucléaires seront publiés. Être déjà connu des acteurs vous donne un avantage décisif.</p><div class="opp-val">Enveloppe estimée : 500k – 2M USD sur 5 ans</div></div>
+    </div>
+    <div style="margin-top:2rem; padding:2rem; border:1px solid rgba(245,197,24,.2); background:rgba(245,197,24,.03)">
+      <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem">⚡ Action immédiate recommandée</div>
+      <p style="font-size:.95rem;color:var(--text);line-height:1.8">Le Sénégal est dans sa <strong style="color:var(--gold)">phase d'étude de faisabilité active en 2026</strong>. Les institutions (ITNA, ARSN, Ministère) cherchent à se structurer <em>avant</em> les appels d'offres formels. C'est le moment d'envoyer une proposition directement au Ministère de l'Énergie ou à l'ITNA avec ce portfolio comme preuve de concept.</p>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:3rem; border-top:1px solid var(--border); position:relative; z-index:2">
+  <button class="btn-a" onclick="showPage('home'); setTimeout(()=>scrollTo('contact'),100)">Démarrer un projet Sénégal →</button>
+  <p style="margin-top:1rem; font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:2px; color:var(--dim); text-transform:uppercase">Sources : Primature Sénégal · Le Soleil · AIEA · AfricaInside · AgenceEcofin · Conseil des ministres Nov. 2025</p>
+</div>
+
+</div><!-- /page-senegal -->
+
+<footer>
+  <div class="f-logo">NuclearWeb Africa</div>
+  <div class="f-copy">© 2026 — Solutions numériques pour le nucléaire africain</div>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('.nav-links a').forEach(a => a.style.color = '');
+  if(name === 'senegal') document.getElementById('nav-senegal').style.color = 'var(--gold)';
+  else document.getElementById('nav-home').style.color = 'var(--atom)';
+}
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senegal Nuclear Hub — West Africa's Energy Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #050810;
+  --dark: #0A0F1E;
+  --panel: #0F1628;
+  --green: #00D65A;
+  --green-dim: rgba(0,214,90,0.15);
+  --gold: #FFD600;
+  --red: #E8001A;
+  --blue: #0066FF;
+  --text: #B8C8D8;
+  --white: #F0F5FF;
+  --border: rgba(0,214,90,0.12);
+  --mono: 'Courier Prime', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:'Archivo',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;width:300px;height:300px;background:radial-gradient(circle,rgba(0,214,90,0.04),transparent 70%);border-radius:50%;pointer-events:none;z-index:9998;}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none;z-index:9997;}
+.lang-bar{background:var(--dark);border-bottom:1px solid var(--border);padding:.5rem 6rem;display:flex;justify-content:space-between;align-items:center;}
+.lang-flag{display:flex;gap:1.5rem;align-items:center;}
+.lang-flag span{font-family:var(--mono);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.lang-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);background:none;border:1px solid rgba(255,255,255,.08);padding:.25rem .7rem;cursor:pointer;transition:all .2s;}
+.lang-btn.active,.lang-btn:hover{border-color:var(--green);color:var(--green);}
+.lang-right{font-family:var(--mono);font-size:.6rem;letter-spacing:2px;color:rgba(255,255,255,.3);}
+nav{position:sticky;top:0;z-index:200;background:rgba(5,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1440px;margin:0 auto;padding:1.3rem 6rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{display:flex;align-items:center;gap:.8rem;}
+.logo-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;}
+.logo-icon svg{width:42px;height:42px;}
+.logo-name{font-family:'Archivo Black',sans-serif;font-size:1.1rem;letter-spacing:1px;color:var(--white);line-height:1;}
+.logo-sub{font-family:var(--mono);font-size:.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-top:.1rem;}
+.nav-menu{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-menu a{font-family:var(--mono);font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;position:relative;}
+.nav-menu a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--green);transition:width .3s;}
+.nav-menu a:hover{color:var(--green);}
+.nav-menu a:hover::after{width:100%;}
+.nav-cta{font-family:var(--mono);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;padding:.6rem 1.5rem;background:var(--green);color:var(--black);font-weight:700;text-decoration:none;transition:all .3s;}
+.nav-cta:hover{background:#00ff6a;transform:translateY(-1px);}
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 6rem 5rem;position:relative;overflow:hidden;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,214,90,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,214,90,0.03) 1px,transparent 1px);background-size:80px 80px;z-index:0;}
+.hero-map-glow{position:absolute;right:-5%;top:15%;width:55%;height:70%;background:radial-gradient(ellipse at center,rgba(0,214,90,0.06) 0%,transparent 70%);z-index:0;}
+.hero-continent{position:absolute;right:5%;top:10%;width:45%;height:80%;display:flex;align-items:center;justify-content:center;z-index:1;opacity:.15;}
+.hero-continent-text{font-family:'Archivo Black',sans-serif;font-size:18rem;color:var(--green);line-height:1;user-select:none;}
+.hero-content{position:relative;z-index:2;max-width:700px;}
+.hero-ticker{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;}
+.ticker-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(0,214,90,.5)}50%{box-shadow:0 0 0 8px rgba(0,214,90,0)}}
+.ticker-text{font-family:var(--mono);font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--green);}
+.ticker-sep{width:40px;height:1px;background:rgba(0,214,90,.3);}
+h1.hero-title{font-family:'Archivo Black',sans-serif;font-size:clamp(3.5rem,7vw,6.5rem);line-height:.92;letter-spacing:-1px;color:var(--white);margin-bottom:2rem;}
+h1.hero-title .hl-green{color:var(--green);}
+h1.hero-title .hl-gold{color:var(--gold);}
+.hero-desc{font-size:1.05rem;line-height:1.85;color:rgba(184,200,216,.75);max-width:560px;margin-bottom:2.5rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.ha-primary{font-family:var(--mono);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;background:var(--green);color:var(--black);font-weight:700;text-decoration:none;transition:all .3s;}
+.ha-primary:hover{background:#00ff6a;transform:translateY(-2px);}
+.ha-secondary{font-family:var(--mono);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:.9rem 2rem;border:1px solid rgba(0,214,90,.3);color:var(--green);text-decoration:none;transition:all .3s;}
+.ha-secondary:hover{border-color:var(--green);background:var(--green-dim);}
+.hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.kpi{background:var(--dark);padding:1.5rem;text-align:center;}
+.kpi-val{font-family:'Archivo Black',sans-serif;font-size:1.8rem;color:var(--green);line-height:1;}
+.kpi-lbl{font-family:var(--mono);font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(184,200,216,.5);margin-top:.3rem;}
+section{padding:6rem;}
+.s-inner{max-width:1440px;margin:0 auto;}
+.s-eyebrow{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem;}
+.s-eyebrow::before{content:'//';opacity:.5;}
+h2.s-title{font-family:'Archivo Black',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--white);line-height:1;margin-bottom:.8rem;letter-spacing:-1px;}
+.s-sub{color:rgba(184,200,216,.6);font-size:.95rem;line-height:1.8;max-width:580px;margin-bottom:3.5rem;}
+#why{background:var(--dark);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.why-big{font-family:'Archivo Black',sans-serif;font-size:8rem;color:transparent;-webkit-text-stroke:1px rgba(0,214,90,.2);line-height:1;user-select:none;}
+.why-overlay{position:absolute;top:2rem;left:2rem;right:0;}
+.why-visual{position:relative;}
+.why-card{background:var(--panel);border:1px solid var(--border);padding:1.5rem 2rem;margin-bottom:1rem;display:flex;gap:1.5rem;align-items:flex-start;transition:border-color .3s;}
+.why-card:hover{border-color:var(--green);}
+.why-ico{font-size:1.5rem;min-width:40px;}
+.why-card h4{font-family:'Archivo Black',sans-serif;font-size:1rem;color:var(--white);margin-bottom:.3rem;}
+.why-card p{font-size:.83rem;color:rgba(184,200,216,.6);line-height:1.6;}
+#programme{background:var(--black);}
+.prog-timeline{position:relative;padding-left:3rem;}
+.prog-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--green),rgba(0,214,90,.05));}
+.prog-item{position:relative;margin-bottom:3.5rem;}
+.prog-dot{position:absolute;left:-3rem;top:.4rem;width:14px;height:14px;border-radius:50%;transform:translateX(calc(-50% + .5px));}
+.prog-dot.done{background:var(--green);box-shadow:0 0 16px var(--green);}
+.prog-dot.current{background:var(--gold);box-shadow:0 0 16px var(--gold);animation:glow-gold 2s ease-in-out infinite;}
+.prog-dot.next{background:var(--panel);border:2px solid rgba(0,214,90,.3);}
+@keyframes glow-gold{0%,100%{box-shadow:0 0 16px var(--gold)}50%{box-shadow:0 0 30px var(--gold),0 0 50px rgba(255,214,0,.3)}}
+.prog-year{font-family:var(--mono);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(184,200,216,.4);margin-bottom:.3rem;}
+.prog-item h3{font-family:'Archivo Black',sans-serif;font-size:1.3rem;color:var(--white);margin-bottom:.4rem;}
+.prog-item p{font-size:.87rem;color:rgba(184,200,216,.6);line-height:1.7;max-width:700px;}
+.prog-badge{display:inline-block;font-family:var(--mono);font-size:.55rem;letter-spacing:2px;text-transform:uppercase;padding:.2rem .6rem;margin-top:.6rem;}
+.pb-done{background:rgba(0,214,90,.1);color:var(--green);border:1px solid rgba(0,214,90,.2);}
+.pb-current{background:rgba(255,214,0,.1);color:var(--gold);border:1px solid rgba(255,214,0,.2);}
+.pb-next{background:rgba(184,200,216,.05);color:rgba(184,200,216,.4);border:1px solid rgba(184,200,216,.1);}
+#institutions{background:var(--dark);}
+.inst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.inst-card{background:var(--panel);border:1px solid var(--border);padding:2.5rem;position:relative;overflow:hidden;transition:all .3s;}
+.inst-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--green),transparent);transform:translateX(-100%);transition:transform .6s;}
+.inst-card:hover::before{transform:translateX(0);}
+.inst-card:hover{border-color:rgba(0,214,90,.3);transform:translateY(-4px);}
+.inst-abbr{font-family:'Archivo Black',sans-serif;font-size:2.5rem;color:transparent;-webkit-text-stroke:1px rgba(0,214,90,.3);line-height:1;margin-bottom:1rem;}
+.inst-card h3{font-family:'Archivo Black',sans-serif;font-size:1.2rem;color:var(--white);margin-bottom:.5rem;}
+.inst-full{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.8rem;}
+.inst-card p{font-size:.83rem;color:rgba(184,200,216,.6);line-height:1.7;}
+.inst-role{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem;}
+.inst-tag{font-family:var(--mono);font-size:.55rem;letter-spacing:1px;padding:.2rem .55rem;background:var(--green-dim);border:1px solid rgba(0,214,90,.15);color:var(--green);text-transform:uppercase;}
+#partenaires{background:var(--black);}
+.part-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem;}
+.part-card{background:var(--panel);border:1px solid var(--border);padding:2rem;text-align:center;transition:all .3s;}
+.part-card:hover{border-color:rgba(0,214,90,.3);background:rgba(0,214,90,.03);}
+.part-ico{font-size:2.5rem;margin-bottom:1rem;}
+.part-name{font-family:'Archivo Black',sans-serif;font-size:1rem;color:var(--white);margin-bottom:.3rem;}
+.part-role{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:.6rem;}
+.part-desc{font-size:.8rem;color:rgba(184,200,216,.55);line-height:1.6;}
+.opp-cta{background:linear-gradient(135deg,var(--panel),var(--dark));border:1px solid var(--border);padding:3rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+.opp-cta h3{font-family:'Archivo Black',sans-serif;font-size:1.8rem;color:var(--white);margin-bottom:.5rem;}
+.opp-cta p{color:rgba(184,200,216,.6);font-size:.9rem;line-height:1.7;}
+#technologie{background:var(--dark);}
+.tech-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.tech-visual{display:flex;flex-direction:column;gap:1.5rem;}
+.tech-diagram{background:var(--panel);border:1px solid var(--border);padding:3rem;text-align:center;}
+.tech-atom{font-size:6rem;animation:spin-slow 20s linear infinite;display:block;}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+.tech-label{font-family:var(--mono);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-top:1rem;}
+.tech-bar{display:flex;align-items:center;gap:1rem;}
+.tb-label{font-family:var(--mono);font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(184,200,216,.5);min-width:100px;}
+.tb-track{flex:1;height:4px;background:rgba(0,214,90,.1);}
+.tb-fill{height:100%;background:var(--green);position:relative;}
+.tb-fill::after{content:'';position:absolute;right:0;top:-3px;width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);}
+.tb-val{font-family:var(--mono);font-size:.6rem;color:var(--green);min-width:40px;text-align:right;}
+.tech-list{display:flex;flex-direction:column;gap:1rem;}
+.tl-item{display:flex;gap:1rem;align-items:flex-start;}
+.tl-ico{font-size:1.2rem;min-width:30px;}
+.tl-item h4{font-family:'Archivo Black',sans-serif;font-size:.95rem;color:var(--white);margin-bottom:.2rem;}
+.tl-item p{font-size:.83rem;color:rgba(184,200,216,.6);line-height:1.6;}
+#contact{background:var(--panel);border-top:1px solid var(--border);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;}
+.c-left h2{font-family:'Archivo Black',sans-serif;font-size:2.8rem;color:var(--white);line-height:.95;letter-spacing:-1px;margin-bottom:1.2rem;}
+.c-left h2 span{color:var(--green);}
+.c-left p{color:rgba(184,200,216,.6);line-height:1.8;margin-bottom:2rem;font-size:.95rem;}
+.c-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.6rem;letter-spacing:2px;text-transform:uppercase;padding:.5rem 1rem;background:var(--green-dim);border:1px solid rgba(0,214,90,.2);color:var(--green);margin-bottom:1.5rem;}
+.c-infos{display:flex;flex-direction:column;gap:.8rem;}
+.ci{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(0,0,0,.2);border:1px solid var(--border);}
+.ci-ico{font-size:1rem;min-width:30px;}
+.ci-label{font-family:var(--mono);font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(184,200,216,.4);margin-bottom:.2rem;}
+.ci-val{font-size:.88rem;color:var(--white);}
+.cf{display:flex;flex-direction:column;gap:1rem;}
+.cfg{display:flex;flex-direction:column;gap:.35rem;}
+.cflbl{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:rgba(184,200,216,.5);}
+.cfi,.cfs,.cft{background:rgba(0,0,0,.3);border:1px solid var(--border);color:var(--white);padding:.85rem 1rem;font-family:'Archivo',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;width:100%;}
+.cfi::placeholder,.cft::placeholder{color:rgba(184,200,216,.3);}
+.cfi:focus,.cfs:focus,.cft:focus{border-color:var(--green);}
+.cfs option{background:var(--panel);}
+.cft{resize:vertical;min-height:110px;}
+.cfr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.btn-cf{font-family:var(--mono);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:1rem 2rem;background:var(--green);color:var(--black);border:none;font-weight:700;cursor:pointer;transition:all .3s;width:100%;margin-top:.3rem;}
+.btn-cf:hover{background:#00ff6a;transform:translateY(-2px);}
+footer{background:var(--black);border-top:1px solid var(--border);padding:4rem 6rem 2rem;}
+.ft-top{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.ft-brand-name{font-family:'Archivo Black',sans-serif;font-size:1.2rem;color:var(--white);letter-spacing:1px;}
+.ft-brand-sub{font-family:var(--mono);font-size:.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-top:.2rem;margin-bottom:1rem;}
+.ft-brand p{font-size:.8rem;color:rgba(184,200,216,.4);line-height:1.7;max-width:260px;}
+.ft-col h6{font-family:var(--mono);font-size:.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(0,214,90,.6);margin-bottom:1.2rem;}
+.ft-col ul{list-style:none;}
+.ft-col li{margin-bottom:.6rem;}
+.ft-col a{font-size:.8rem;color:rgba(184,200,216,.4);text-decoration:none;transition:color .2s;}
+.ft-col a:hover{color:var(--white);}
+.ft-bottom{max-width:1440px;margin:0 auto;padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.ft-bottom p{font-family:var(--mono);font-size:.55rem;letter-spacing:1px;color:rgba(184,200,216,.3);text-transform:uppercase;}
+.ft-flags{display:flex;gap:.5rem;font-size:1.2rem;}
+@media(max-width:960px){
+  .lang-bar,.nav-inner,.hero,section,footer{padding-left:1.5rem;padding-right:1.5rem;}
+  .hero-continent{display:none;}
+  .why-grid,.tech-layout,.contact-wrap,.ft-top{grid-template-columns:1fr;}
+  .inst-grid,.part-grid{grid-template-columns:1fr;}
+  .hero-kpis{grid-template-columns:1fr 1fr;}
+  .opp-cta{grid-template-columns:1fr;}
+  nav .nav-menu{display:none;}
+  .cfr{grid-template-columns:1fr;}
+  .ft-bottom{flex-direction:column;gap:1rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <div class="lang-flag">
+    <span>🇸🇳 Sénégal</span>
+    <button class="lang-btn active">FR</button>
+    <button class="lang-btn">EN</button>
+    <button class="lang-btn">AR</button>
+  </div>
+  <span class="lang-right">SENEGAL NUCLEAR HUB · EST. 2026</span>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 42 42" fill="none">
+          <circle cx="21" cy="21" r="20" stroke="rgba(0,214,90,0.3)" stroke-width="1"/>
+          <circle cx="21" cy="21" r="5" fill="#00D65A"/>
+          <ellipse cx="21" cy="21" rx="18" ry="7" stroke="rgba(0,214,90,0.5)" stroke-width="1" fill="none"/>
+          <ellipse cx="21" cy="21" rx="18" ry="7" stroke="rgba(0,214,90,0.5)" stroke-width="1" fill="none" transform="rotate(60 21 21)"/>
+          <ellipse cx="21" cy="21" rx="18" ry="7" stroke="rgba(0,214,90,0.5)" stroke-width="1" fill="none" transform="rotate(120 21 21)"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">SENEGAL NUCLEAR HUB</div>
+        <div class="logo-sub">West Africa Energy Future</div>
+      </div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#why">Pourquoi Sénégal</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#institutions">Institutions</a></li>
+      <li><a href="#partenaires">Partenaires</a></li>
+      <li><a href="#technologie">SMR</a></li>
+      <li style="font-size:1.1rem">🇸🇳</li>
+    </ul>
+    <a href="#contact" class="nav-cta">Nous Rejoindre</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-map-glow"></div>
+  <div class="hero-continent"><div class="hero-continent-text">SN</div></div>
+  <div class="hero-content">
+    <div class="hero-ticker">
+      <div class="ticker-dot"></div>
+      <span class="ticker-text">Étude de faisabilité SMR en cours · Avril 2026</span>
+      <div class="ticker-sep"></div>
+      <span class="ticker-text">AIEA · Partenariat actif</span>
+    </div>
+    <h1 class="hero-title">🇸🇳 Sénégal,<br><span class="hl-green">Hub Nucléaire</span><br>de l'<span class="hl-gold">Afrique</span><br>Francophone</h1>
+    <p class="hero-desc">Le Sénégal engage sa filière nucléaire pour la souveraineté énergétique de l'Afrique de l'Ouest. Découvrez les opportunités d'investissement, de partenariat et de collaboration autour des SMR.</p>
+    <div class="hero-actions">
+      <a href="#programme" class="ha-primary">Explorer le programme →</a>
+      <a href="#contact" class="ha-secondary">Devenir partenaire</a>
+    </div>
+    <div class="hero-kpis">
+      <div class="kpi"><div class="kpi-val">SMR</div><div class="kpi-lbl">Technologie cible</div></div>
+      <div class="kpi"><div class="kpi-val">2030</div><div class="kpi-lbl">Premier réacteur</div></div>
+      <div class="kpi"><div class="kpi-val">40%</div><div class="kpi-lbl">Mix décarboné visé</div></div>
+      <div class="kpi"><div class="kpi-val">Hub</div><div class="kpi-lbl">Afrique francophone</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="s-inner">
+    <div class="why-grid">
+      <div>
+        <div class="s-eyebrow">Positionnement stratégique</div>
+        <h2 class="s-title">Pourquoi le Sénégal?</h2>
+        <p class="s-sub">Un pays stable, en croissance rapide, avec une vision énergétique claire et le soutien des grandes institutions internationales.</p>
+      </div>
+      <div class="why-visual">
+        <div class="why-big">SN</div>
+        <div class="why-overlay">
+          <div class="why-card"><div class="why-ico">🏛️</div><div><h4>Stabilité Institutionnelle</h4><p>Démocratie solide, cadre juridique fiable, ARSN opérationnel. Partenaire AIEA depuis 2014.</p></div></div>
+          <div class="why-card"><div class="why-ico">⚡</div><div><h4>Déficit Énergétique à Combler</h4><p>Forte demande d'électricité non satisfaite. Le nucléaire comme solution de base pour l'industrialisation.</p></div></div>
+          <div class="why-card"><div class="why-ico">🌍</div><div><h4>Porte d'Entrée CEDEAO</h4><p>Position géographique stratégique. Potentiel d'exportation d'énergie vers les 15 pays de la CEDEAO.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programme">
+  <div class="s-inner">
+    <div class="s-eyebrow">Feuille de route officielle</div>
+    <h2 class="s-title">Programme Nucléaire National</h2>
+    <p class="s-sub">Annoncé en Conseil des ministres (novembre 2025), le programme vise la souveraineté énergétique via les SMR.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;">
+      <div class="prog-timeline">
+        <div class="prog-item"><div class="prog-dot done"></div><div class="prog-year">2014 – 2019</div><h3>Sécurité Nucléaire INSSP</h3><p>Mise en place du cadre de sécurité nucléaire avec l'AIEA. Formation des forces de l'ordre, douanes et régulateurs.</p><span class="prog-badge pb-done">✓ Complété</span></div>
+        <div class="prog-item"><div class="prog-dot done"></div><div class="prog-year">2024</div><h3>Création ARSN & Plan JETP</h3><p>Opérationnalisation de l'Autorité de Radioprotection et Sûreté Nucléaire. Stratégie de transition énergétique intégrant le nucléaire.</p><span class="prog-badge pb-done">✓ Complété</span></div>
+        <div class="prog-item"><div class="prog-dot done"></div><div class="prog-year">Novembre 2025</div><h3>Vision SMR déclarée</h3><p>Communication officielle du ministre Birame Soulèye Diop en Conseil des ministres. Ambition de hub nucléaire pour l'Afrique francophone.</p><span class="prog-badge pb-done">✓ Annoncé</span></div>
+      </div>
+      <div class="prog-timeline">
+        <div class="prog-item"><div class="prog-dot current"></div><div class="prog-year">2025 – 2026 · EN COURS</div><h3>Étude de Faisabilité AIEA</h3><p>État des lieux du cadre réglementaire avec l'AIEA. Études pour le premier réacteur de recherche et la filière médicale.</p><span class="prog-badge pb-current">⚡ Phase active</span></div>
+        <div class="prog-item"><div class="prog-dot next"></div><div class="prog-year">2027 – 2030</div><h3>Réacteur de Recherche</h3><p>Construction du premier réacteur dédié à la recherche, formation et production de médicaments nucléaires.</p><span class="prog-badge pb-next">→ Planifié</span></div>
+        <div class="prog-item"><div class="prog-dot next"></div><div class="prog-year">2030+</div><h3>SMR Énergétique Commercial</h3><p>Déploiement de petites centrales nucléaires. Mix énergétique à 40% décarboné. Exportation régionale d'énergie propre.</p><span class="prog-badge pb-next">→ Horizon long terme</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="institutions">
+  <div class="s-inner">
+    <div class="s-eyebrow">Architecture institutionnelle</div>
+    <h2 class="s-title">Les Acteurs Clés</h2>
+    <p class="s-sub">Un écosystème institutionnel solide pour piloter la filière nucléaire nationale.</p>
+    <div class="inst-grid">
+      <div class="inst-card"><div class="inst-abbr">ARSN</div><h3>Autorité de Radioprotection et Sûreté Nucléaire</h3><div class="inst-full">Régulateur Indépendant · Créé 2024</div><p>Autorité compétente pour la réglementation, le contrôle et la supervision de toutes les activités nucléaires et radiologiques. Interlocuteur principal pour les partenaires internationaux.</p><div class="inst-role"><span class="inst-tag">Régulation</span><span class="inst-tag">Licences</span><span class="inst-tag">Inspection</span><span class="inst-tag">AIEA</span></div></div>
+      <div class="inst-card"><div class="inst-abbr">ITNA</div><h3>Institut de Technologie Nucléaire Appliquée</h3><div class="inst-full">Formation & Recherche · UCAD Dakar</div><p>Socle de la filière nucléaire nationale pour la formation des ingénieurs, techniciens et chercheurs sénégalais. Futur centre d'excellence nucléaire pour l'Afrique francophone.</p><div class="inst-role"><span class="inst-tag">Formation</span><span class="inst-tag">Recherche</span><span class="inst-tag">Certification</span></div></div>
+      <div class="inst-card"><div class="inst-abbr">MEP</div><h3>Ministère de l'Énergie et du Pétrole</h3><div class="inst-full">Autorité de tutelle · Gouvernement</div><p>Pilotage de la politique énergétique nationale. Coordination interministérielle du programme nucléaire. Dialogue avec les partenaires bilatéraux et multilatéraux.</p><div class="inst-role"><span class="inst-tag">Politique</span><span class="inst-tag">Stratégie</span><span class="inst-tag">Budget</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="partenaires">
+  <div class="s-inner">
+    <div class="s-eyebrow">Écosystème international</div>
+    <h2 class="s-title">Partenaires & Opportunités</h2>
+    <p class="s-sub">Le Sénégal s'appuie sur un réseau de partenaires internationaux de premier plan.</p>
+    <div class="part-grid">
+      <div class="part-card"><div class="part-ico">🌐</div><div class="part-name">AIEA</div><div class="part-role">Partenaire technique principal</div><div class="part-desc">Accompagnement depuis 2014. Missions d'évaluation, formations, normes de sûreté et financement institutionnel.</div></div>
+      <div class="part-card"><div class="part-ico">🇺🇸</div><div class="part-name">États-Unis</div><div class="part-role">Accord de coopération 123</div><div class="part-desc">Technologie SMR américaine. Financement via US EXIM Bank et DFC pour les projets d'énergie propre en Afrique.</div></div>
+      <div class="part-card"><div class="part-ico">🇫🇷</div><div class="part-name">France</div><div class="part-role">Coopération technique et formation</div><div class="part-desc">Expertise du CEA et EDF. Formation d'ingénieurs à l'INSTN. Potentiel pour réacteurs de recherche.</div></div>
+      <div class="part-card"><div class="part-ico">🇷🇺</div><div class="part-name">Russie / Rosatom</div><div class="part-role">Acteur majeur en Afrique</div><div class="part-desc">Rosatom très actif sur le continent. Technologie VVER et RITM SMR. Présence dans 20+ pays africains.</div></div>
+    </div>
+    <div class="opp-cta">
+      <div><h3>Vous êtes un acteur international ?</h3><p>Fournisseurs de technologie SMR, cabinets d'ingénierie, instituts de formation, agences de financement — rejoignez le programme nucléaire sénégalais dès la phase d'étude.</p></div>
+      <a href="#contact" class="ha-primary">Soumettre une proposition →</a>
+    </div>
+  </div>
+</section>
+
+<section id="technologie">
+  <div class="s-inner">
+    <div class="s-eyebrow">Focus technologique</div>
+    <h2 class="s-title">Petits Réacteurs Modulaires<br><span style="color:var(--green)">SMR — L'Avenir</span></h2>
+    <div class="tech-layout">
+      <div>
+        <p class="s-sub">Les SMR sont particulièrement adaptés aux besoins du Sénégal : puissance modulable, coûts réduits, empreinte foncière limitée.</p>
+        <div class="tech-list">
+          <div class="tl-item"><div class="tl-ico">⚡</div><div><h4>Puissance adaptée</h4><p>Entre 10 et 300 MWe par unité — idéal pour le réseau sénégalais et les industries extractives.</p></div></div>
+          <div class="tl-item"><div class="tl-ico">🏭</div><div><h4>Construction modulaire</h4><p>Fabrication en usine, livraison sur site. Réduction des délais de construction à 3-5 ans.</p></div></div>
+          <div class="tl-item"><div class="tl-ico">💰</div><div><h4>Investissement progressif</h4><p>Capex initial réduit. Possibilité d'ajouter des modules selon la croissance de la demande.</p></div></div>
+          <div class="tl-item"><div class="tl-ico">🌿</div><div><h4>Énergie décarbonée 24/7</h4><p>Complémentaire au solaire et à l'éolien. Production continue sans émissions de CO₂.</p></div></div>
+          <div class="tl-item"><div class="tl-ico">💊</div><div><h4>Applications médicales</h4><p>Production de radio-isotopes médicaux. Développement de la médecine nucléaire au Sénégal.</p></div></div>
+        </div>
+      </div>
+      <div class="tech-visual">
+        <div class="tech-diagram"><span class="tech-atom">⚛️</span><div class="tech-label">Petit Réacteur Modulaire · SMR</div></div>
+        <div style="background:var(--panel);border:1px solid var(--border);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+          <div class="tech-bar"><span class="tb-label">Sûreté</span><div class="tb-track"><div class="tb-fill" style="width:95%"></div></div><span class="tb-val">95%</span></div>
+          <div class="tech-bar"><span class="tb-label">Modularité</span><div class="tb-track"><div class="tb-fill" style="width:90%"></div></div><span class="tb-val">90%</span></div>
+          <div class="tech-bar"><span class="tb-label">Accessibilité</span><div class="tb-track"><div class="tb-fill" style="width:80%"></div></div><span class="tb-val">80%</span></div>
+          <div class="tech-bar"><span class="tb-label">Décarbonation</span><div class="tb-track"><div class="tb-fill" style="width:100%"></div></div><span class="tb-val">100%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="s-inner">
+    <div class="contact-wrap">
+      <div class="c-left">
+        <div class="c-badge"><span>🤝</span> Partenariats & Collaborations</div>
+        <h2>Rejoignez le <span>Hub</span> Nucléaire Sénégalais</h2>
+        <p>Investisseurs, fournisseurs de technologie, cabinets d'ingénierie, instituts académiques — nous sommes ouverts à toute forme de collaboration.</p>
+        <div class="c-infos">
+          <div class="ci"><div class="ci-ico">✉️</div><div><div class="ci-label">Email général</div><div class="ci-val">contact@senegal-nuclear-hub.sn</div></div></div>
+          <div class="ci"><div class="ci-ico">🌐</div><div><div class="ci-label">Site officiel</div><div class="ci-val">www.senegal-nuclear-hub.sn</div></div></div>
+          <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-label">Adresse</div><div class="ci-val">Ministère de l'Énergie et du Pétrole, Dakar, Sénégal</div></div></div>
+          <div class="ci"><div class="ci-ico">🤝</div><div><div class="ci-label">Partenariats internationaux</div><div class="ci-val">partenariats@senegal-nuclear-hub.sn</div></div></div>
+        </div>
+      </div>
+      <div class="cf">
+        <div class="cfr">
+          <div class="cfg"><label class="cflbl">Prénom / First Name</label><input type="text" class="cfi" placeholder="John / Amadou"></div>
+          <div class="cfg"><label class="cflbl">Nom / Last Name</label><input type="text" class="cfi" placeholder="Smith / Diallo"></div>
+        </div>
+        <div class="cfg"><label class="cflbl">Organisation</label><input type="text" class="cfi" placeholder="Westinghouse · EDF · IAEA · Cabinet..."></div>
+        <div class="cfg"><label class="cflbl">Pays / Country</label><input type="text" class="cfi" placeholder="France · USA · Canada · Chine..."></div>
+        <div class="cfg"><label class="cflbl">Type de collaboration</label>
+          <select class="cfs">
+            <option>Sélectionner / Select...</option>
+            <option>Fournisseur de technologie SMR</option>
+            <option>Financement & investissement</option>
+            <option>Cabinet d'ingénierie & conseil</option>
+            <option>Institut de formation & recherche</option>
+            <option>Agence gouvernementale</option>
+            <option>Presse & médias</option>
+            <option>Autre / Other</option>
+          </select>
+        </div>
+        <div class="cfg"><label class="cflbl">Message / Proposition</label><textarea class="cft" placeholder="Décrivez votre proposition de collaboration..."></textarea></div>
+        <button class="btn-cf">→ Soumettre la proposition</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <div class="ft-brand-name">SENEGAL NUCLEAR HUB</div>
+      <div class="ft-brand-sub">West Africa Energy Future</div>
+      <p>Plateforme officielle du programme nucléaire sénégalais. Sous l'égide du Ministère de l'Énergie et du Pétrole de la République du Sénégal.</p>
+    </div>
+    <div class="ft-col"><h6>Programme</h6><ul><li><a href="#">Vision 2030</a></li><li><a href="#">Feuille de route</a></li><li><a href="#">SMR Technologie</a></li><li><a href="#">Médecine nucléaire</a></li></ul></div>
+    <div class="ft-col"><h6>Institutions</h6><ul><li><a href="#">ARSN</a></li><li><a href="#">ITNA / UCAD</a></li><li><a href="#">Ministère Énergie</a></li><li><a href="#">AIEA</a></li></ul></div>
+    <div class="ft-col"><h6>Partenariats</h6><ul><li><a href="#">Investir</a></li><li><a href="#">Technologie</a></li><li><a href="#">Formation</a></li><li><a href="#">Presse</a></li></ul></div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2026 Senegal Nuclear Hub · République du Sénégal 🇸🇳</p>
+    <div class="ft-flags">🇸🇳 🌍 ⚛️</div>
+    <p>Mentions légales · Confidentialité</p>
+  </div>
+</footer>
+
+</body>
+</html>
