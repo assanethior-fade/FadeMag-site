@@ -295,6 +295,41 @@
     .why-steps li { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.15); font-size: 14px; color: rgba(255,255,255,.9); }
     .step-num { width: 32px; height: 32px; background: rgba(255,255,255,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; }
 
+    header nav {
+  display: flex;
+  flex-wrap: wrap; /* Permet de passer à la ligne sur petit écran */
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+  @media (max-width: 600px) {
+  .btn-wave {
+    width: 100%; /* Le bouton prend toute la largeur pour être plus clair */
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .header-logo {
+    font-size: 1.2rem; /* Réduire la taille du logo si nécessaire */
+  }
+}
+
+  .contact-card {
+  width: 90%; /* Garde une marge de chaque côté */
+  margin: 20px auto; /* Centre le bloc */
+  padding: 30px 20px;
+  border-radius: 15px;
+}
+
+  html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
     /* TESTIMONIALS */
     .testimonials { background: var(--grey); padding: 80px 60px; }
     .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
