@@ -308,6 +308,24 @@
     .author-name { font-size: 14px; font-weight: 700; color: var(--dark); }
     .author-role { font-size: 12px; color: #999; }
 
+    /* ... vos styles précédents ... */
+
+    /* AJOUTEZ LE CODE ICI */
+    .products-grid, .hw-grid {
+      display: grid !important; /* !important pour forcer le changement */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+      gap: 20px;
+    }
+
+    .footer-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+      gap: 40px;
+    }
+
+  </style> </head>
+
+
     /* CTA */
     .cta-band { background: linear-gradient(135deg,#cc1f1f 0%,#8b0000 100%); padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
     .cta-band::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px); background-size: 30px 30px; }
@@ -367,6 +385,36 @@
       .footer-grid { grid-template-columns: 1fr; gap: 30px; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .cta-band h2 { font-size: 28px; }
+      .hero {
+  height: auto; /* Permet au contenu de pousser la hauteur */
+  padding: 100px 0;
+}
+.slide-content h1 {
+  font-size: 28px; /* Plus lisible sur téléphone */
+}
+.slide-btns {
+  flex-direction: column; /* Boutons l'un sur l'autre */
+  width: 100%;
+}
+.btn-slide-primary, .btn-slide-secondary {
+  text-align: center;
+}
+
+
+      @media (max-width: 768px) {
+  .nav-links.mobile-active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    gap: 15px;
+  }
+}
     }
   </style>
 </head>
@@ -389,6 +437,7 @@
 <header id="main-header">
   <nav>
     <a href="#" class="logo">
+      <button id="menu-toggle" class="md:hidden text-2xl">☰</button>
       <div class="logo-icon">F</div>
       <div class="logo-text">
         <div class="name">FADE-MAG</div>
@@ -967,6 +1016,23 @@ function payer(montant){
 <a href="#hero" id="back-top">↑</a>
 
 <script>
+
+  const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('mobile-active');
+  menuToggle.textContent = navLinks.classList.contains('mobile-active') ? '✕' : '☰';
+});
+
+// Fermer le menu si on clique sur un lien
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('mobile-active');
+    menuToggle.textContent = '☰';
+  });
+});
+
   /* SLIDER */
   const slidesEl   = document.getElementById('slides');
   const allSlides  = document.querySelectorAll('.slide');
@@ -1058,6 +1124,8 @@ app.listen(3000, () => console.log("Server running"));
 <a href="https://wa.me/221771352869" target="_blank" id="whatsapp-btn"> 
   💬  
 </a>
+
+
 
 <style>
 #whatsapp-btn{
